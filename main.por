@@ -1,3 +1,4 @@
+
 programa
 {
 	
@@ -9,8 +10,16 @@ programa
 		real stocks
 		real reits
 		
+		real capital
+		real porcent
+		
 		escreva("GuidanceInvestment")
-		escreva("Ola você contem 100% dos seu investimentos, vamos separalos como mais se adequa a você")
+		escreva("Ola você contem 100% dos seu investimentos, vamos separalos como mais se adequa a você\n")
+		escreva("por exemplo você investiu R$1500, agora você escolhe a porcentagem deste dinhero e onde ele sera invertido\n")
+		
+		escreva("Digite o capital de investimento");
+		
+		leia(capital)
 		
 	}
 }
