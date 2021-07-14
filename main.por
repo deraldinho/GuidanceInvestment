@@ -1,100 +1,44 @@
-programa
-{
-	
-	
-	
-	funcao inicio()
-	{
-	    inteiro menu = -1
-		real CDBs
-		real Acoes
-		real fundos_imobiliarios
-		real stocks
-		real reits
-		
-		real capital
-		real porcent = 100.00
-
+programa {
+	funcao inicio() {
+	    real carteiras[5] = {0.0,0.0,0.0,0.0,0.0}
+	    real porcentagem = 0.0
 		resumo()
-		
-		escreva("Digite o capital de investimento\n")
-		leia(capital)
-		
-		escreva("Otimo agora, vamos agora separa e em porcentagem para cara campo a ser investido\n você tem 100% para investir")
-		escreva("Temos a seguintes opções CDBs, Ações, Fundos imobiliarios, Stocks, Reits\n")
-		
-		enquanto (menu != 0){
-		
-    	    escreva("Por favor digite quantos % você vai querer investir em CDB")
-    	    leia(CDBs)
-    	    porcent = porcent - CDBs
-    	    se (porcent < 0){
-    	        escreva("Você ultrapassou seu limite de investimento")
-    	    }
-    	    senao se (pocent == 0){
-    	        escreva("Voce ultilizou todo o saldo em CDBs")
-    	        Acoes = 0
-    	        fundos_imobiliarios = 0
-    	        stocks = 0
-    	        reits = 0
-    	    }
-    	    senao{
-                escreva("Por favor digite quantos % você vai querer investir em Açoes")
-        	    leia(Acoes)
-        	    porcent = porcent - Acoes
-        	    se(porcent < 0){
-        	            
-        	        }
-        	    senao se(porcent == 0){
-        	        escreva("Voce ultilizou todos os saldo em CDBs e Ações")
-        	        fundos_imobiliarios = 0
-        	        stocks = 0
-        	        reits = 0
-        	        }
-        	    senao{
-            	    escreva("Por favor digite quantos % você vai querer investir em fundos imobiliarios")
-            	    leia(fundos_imobiliarios)
-            	    porcent = porcent - fundos_imobiliarios
-            	    se(porcent < 0){
-            	        escreva("Você ultrapassou seu limite de investimento")
-            	    }senao se(porcent == 0){
-                        escreva("Voce ultilizou todos os saldo em CDBs, Ações e Fundos Imobiliarios")
-            	        
-            	    }
-            	    escreva("Por favor digite quantos % você vai querer investir em Stocks")
-            	    leia(stocks)
-            	    porcent = porcent - stocks
-            	    escreva("Por favor digite quantos % você vai querer investir em Reits")
-            	    leia(reits)
-            	    porcent = porcent - reits
-        	        
-        	    }
-        	    
-    	    }
-    	    
-	    
-		}
-	    
-		
+		atribuir_valores(carteiras, porcentagem)
 	}
 	
-	funcao vazio resumo(){
-	    
+	funcao resumo(){
+	    escreva("___________________________________________________________\n")
 	    escreva("GuidanceInvestment\n")
-		escreva("Ola você contem 100% dos seu investimentos, vamos separalos como mais se adequa a você\n")
-		escreva("por exemplo você investiu R$1500, agora você escolhe a porcentagem deste dinhero e onde ele sera investido\n")
-		
+	    escreva("-----------------------------------------------------------\n")
+	    escreva("este software tem como finalidade te ajudar no controle dos\nseu investimentos em cada carteira.\n")
+	    escreva("nosso software trabalha com 5 tipos de carteira dentre elas\nsão:\nCDBs\nAções\nFundos Imobiliários\nStocks\nReits\n")
+	    escreva("-----------------------------------------------------------\n")
 	}
 	
+	funcao atribuir_valores(real &carteiras[], real &porcentagem){
+	    se(carteiras[0] == 0.0 e carteiras[1] == 0 e carteiras[2] == 0 e carteiras[3] == 0 e carteiras[4] == 0){
+	        escreva("-----------------------------------------------------------\n")
+	        escreva("Você ainda não possui investimento em nenhuma carteira.\nvamo distribuir sua porcentagem de investimento\n")
+	        escreva("-----------------------------------------------------------\n")
+	    }
+	}
+	
+	funcao real atribuir_CDBs(real &porcentagem){
+	    
+	    escreva("qual é a porcentagem você deseja investir CDBs")
+        se(valor <= 0.0){
+            escreva("voce não ira investir na carteira CDBs")
+            retorne 0.0
+        }senao {
+            se (valor > 0.0 e porcentagem < 100.0 e valor + porcentagem > 100){
+                escreva("voce não tem credito para investir nesta carteira")
+                retorne 0.0
+            }senao{
+	            se(valor > 0.0 e porcentagem < 100.0 e valor + porcentagem < 100){
+                    porcentagem = porcentagem + valor
+                    retorne valor
+                }
+            }
+        }
+    }
 }
-/* $$$ Portugol Studio $$$ 
- * 
- * Esta seção do arquivo guarda informações do Portugol Studio.
- * Você pode apagá-la se estiver utilizando outro editor.
- * 
- * @POSICAO-CURSOR = 151; 
- * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
- * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
- * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
- */
