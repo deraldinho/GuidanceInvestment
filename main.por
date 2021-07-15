@@ -3,8 +3,10 @@ programa {
 		real carteiras[5] = {0.0,0.0,0.0,0.0,0.0}
 		real capital = 0.0
 		real porcentagem = 0.0
+		real porcentagem_total= 0.0
 		resumo()
-		
+
+		leia(porcentagem_total)
 		atribuir_valores(carteiras, porcentagem)
 		atribuir_valores(carteiras, porcentagem)
 		
@@ -17,6 +19,16 @@ programa {
 		escreva("este software tem como finalidade te ajudar no controle dos\nseu investimentos em cada carteira.\n")
 		escreva("nosso software trabalha com 5 tipos de carteira dentre elas\nsão:\nCDBs\nAções\nFundos Imobiliários\nStocks\nReits\n")
 		escreva("-----------------------------------------------------------\n")
+	}
+
+	funcao real calc_porcentagem(real valor, real &carteiras[]){
+		real total_invest = 0.0
+		inteiro contador
+		para (contador = 0; contador < 5 ; contador++){
+			total_invest = total_invest + carteiras[contador]
+		}
+		
+		retorne (valor * 100)/total_invest
 	}
 	
 	funcao atribuir_valores(real &carteiras[], real &porcentagem){
@@ -33,15 +45,15 @@ programa {
 				carteiras[4] = atribuir_Reits(porcentagem)
 				contador = -1
 			}senao{
-				escreva("Total de Percentual Investido: ",porcentagem,"\n")
-				escreva("quais das carteiras você deseja investir\n")
+				escreva("Total de Percentual Investido: ",porcentagem,"quando este valo chegar a \n")
 				escreva("-----------------------------------------------------------\n")
-				escreva("(1) - CDBs ja Investido(",carteiras[0])
-				escreva("%)\n(2) - Ações ja Investido(",carteiras[1])
-				escreva("%)\n(3) - Fundos Imobiliários ja Investido(",carteiras[2])
-				escreva("%)\n(4) - Stocks ja Investido(",carteiras[3])
-				escreva("%)\n(5) - Reits ja Investido(",carteiras[4])
-				escreva("%)\n(0) - SAIR\n")
+				escreva("quais das carteiras você deseja investir\n")
+				escreva("(1) - CDBs| Objetivos pretendido(",carteiras[0],") Objetivo atual(",calc_porcentagem(carteiras[0],carteiras),"%)\n")
+				escreva("(2) - Ações| Objetivos pretendido(",carteiras[1],") Objetivo atual(", calc_porcentagem(carteiras[1],carteiras),"%)\n")
+				escreva("(3) - Fundos Imobiliários| Objetivos pretendido(",carteiras[2],") Objetivo atual(", calc_porcentagem(carteiras[1],carteiras),"%)\n")
+				escreva("(4) - Stocks| Objetivos pretendido(",carteiras[3],") Objetivo atual(", calc_porcentagem(carteiras[3],carteiras),"%)\n")
+				escreva("(5) - Reits| Objetivos pretendido(",carteiras[4],") Objetivo atual(", calc_porcentagem(carteiras[4],carteiras),"%)\n")
+				escreva("(0) - SAIR|\n")
 				escreva("-----------------------------------------------------------\n")
 				escreva("Digite a Opção: \n")
 				leia(contador)
@@ -130,7 +142,6 @@ programa {
 		retorne 0.0
 		}
 	}
-
 	funcao real atribuir_Fundos_Imobiliarios(real &porcentagem){
 		real valor
 		se(porcentagem >= 100.0){
@@ -160,7 +171,6 @@ programa {
 			retorne 0.0
 		}
 	}
-
 	funcao real atribuir_Stocks (real &porcentagem){
 		real valor
 		se(porcentagem >= 100.0){
@@ -190,7 +200,6 @@ programa {
 			retorne 0.0
 		}
 	}
-        
 	funcao real atribuir_Reits (real &porcentagem){
 		real valor
 		se(porcentagem >= 100.0){
@@ -220,5 +229,4 @@ programa {
 			retorne 0.0
 		}
 	}
-           
 }
